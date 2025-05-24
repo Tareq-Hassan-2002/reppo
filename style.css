@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 body{
-    padding-top: 10%;
+    padding-top: 5%;
     width: 100vw;
     height: 100vh;
     background-image: linear-gradient(to bottom, #000000 0% , #FF0000 53%,#333333 100%,#1A1A1A 100%);
