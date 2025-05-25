@@ -1,0 +1,118 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    padding-top: 20%;
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(to bottom, #000000 0% , #FF0000 53%,#333333 100%,#1A1A1A 100%);
+    position: relative;
+}
+.title{
+    color: white;
+    margin: auto;
+    font-size: 1.4em;
+    width: 13em;
+    text-align: center;
+    margin-bottom: 8vh;
+}
+
+.element {
+    position: absolute;
+    left: 50%;
+    transform: translate( -50%);
+    text-align: center;
+    border-radius: 42px;
+    background: linear-gradient(to bottom, #000000 0%, #B9B9B9 100%);
+    padding: 3px; /* Thickness of the fake border */
+    display: inline-block; /* Or block depending on your layout */
+}
+
+.element > .inner {
+    text-align: center;
+    margin: auto;
+    border-radius: 42px;
+    width: 70vw;
+    height: 55vh;
+    background: linear-gradient(to bottom,#0B210B 0%,#2B872B 100%);
+    padding: 1rem; /* Your actual content padding */
+    position: relative;
+}
+.logo p{
+    line-height: 8vh;
+}
+.logo{
+    text-align: center;
+    color: rgba(255, 255, 255, 40%);
+    font-size: 5em;
+    font-family: 'Island Moments', cursive;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate( -50%,-50%);
+}
+.chair{
+    display: flex;
+    width: 12vh;
+    height: 12vh;
+    position: absolute;
+    background-color: #000000;
+    border-radius: 50%;
+    background-image: linear-gradient(to bottom,#393939 0%,#B9B9B9 100%);
+    border: solid 1px black;
+    justify-content: center;
+    align-items: center;
+}
+.chair1{
+    top: -6vh;
+    left: 50%;
+    transform: translate(-50%);
+    
+}
+.chair2{
+    bottom: -6vh;
+    left: 50%;
+    transform: translate(-50%);
+}
+.chair3{
+    left: -6vh;
+    top: 50%;
+    transform: translate(0,-50%);
+    
+}
+.chair4{
+    right: -6vh;
+    top: 50%;
+    transform: translate(0,-50%);
+}
+.playerName,input{
+    font-size: 14px;
+    text-align: center;
+    width: 11vh;
+    height: 5vh;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 30%);
+}
+.start{
+    position: absolute;
+    right: 6vw;
+    bottom: 2vh;
+    margin: auto;
+    margin-top: 30vh;
+    width: 20vw;
+}
+button {
+    color: white;
+    width: 20vw;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 20%);
+    border-radius: 56px;
+    font-size: 0.8em;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
