@@ -4,22 +4,12 @@
     box-sizing: border-box;
 }
 body{
-    padding-top: 10%;
     width: 100vw;
     height: 100vh;
     background-image: linear-gradient(to bottom, #000000 0% , #FF0000 53%,#333333 100%,#1A1A1A 100%);
-    position: relative;
 }
-.title{
-    color: white;
-    margin: auto;
-    font-size: 1.4em;
-    width: 13em;
-    text-align: center;
-    margin-bottom: 8vh;
-}
-
 .element {
+    margin-top: 8vh;
     position: absolute;
     left: 50%;
     transform: translate( -50%);
@@ -54,6 +44,7 @@ body{
     transform: translate( -50%,-50%);
 }
 .chair{
+    z-index: 1000;
     display: flex;
     width: 12vh;
     height: 12vh;
@@ -87,21 +78,68 @@ body{
     top: 50%;
     transform: translate(0,-50%);
 }
-.playerName,input{
+.order{
+    display: flex;
+    width: 6vh;
+    height: 4vh;
+    position: absolute;
+    background-color: #000000;
+    border-radius: 10px;
+    background-image: linear-gradient(to bottom,#393939 0%,#B9B9B9 100%);
+    border: solid 1px black;
+    justify-content: center;
+    align-items: center;
+}
+.order>input{
+    color: #000000;
     font-size: 14px;
     text-align: center;
-    width: 11vh;
-    height: 5vh;
-    border-radius: 15px;
+    width: 5vh;
+    height: 3vh;
+    border-radius: 7px;
     background-color: rgba(255, 255, 255, 30%);
 }
-.start{
+.order1{
+    top: 6.5vh;
+    left: 50%;
+    transform: translate(-50%);
+}
+.order2{
+    bottom: -10.5vh;
+    left: 50%;
+    transform: translate(-50%);
+}
+.order3{
+    left: -3vh;
+    top: 65.5%;
+    transform: translate(0,-50%);
+}
+.order4{
+    right: -3vh;
+    top: 65.5%;
+    transform: translate(0,-50%);
+}
+.score{
+    color: white;
+    margin-top: 10vh;
     position: absolute;
-    right: 6vw;
-    bottom: 2vh;
-    margin: auto;
-    margin-top: 30vh;
-    width: 20vw;
+    left: 50%;
+    bottom: 15px;
+    transform: translate( -50%);
+    width: 85vw;
+    height: 13vh;
+    text-align: center;
+    border-radius: 42px;
+    background: linear-gradient(to bottom, #000000 0%, #B9B9B9 100%);
+    padding: 3px; /* Thickness of the fake border */
+    padding: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 2.7vh;
+    direction: rtl;
 }
 button {
     color: white;
@@ -115,4 +153,38 @@ button {
 a{
     color: white;
     text-decoration: none;
+}
+.check{
+    width: 4vh;
+}
+.check>input{
+    width: 2.5vh;
+    height: 2.5vh;
+}
+.check1{
+    top: 10.7vh;
+    left: 50%;
+    transform: translate(-50%);
+}
+.check2{
+    bottom: -15vh;
+    left: 50%;
+    transform: translate(-50%);
+}
+.check3{
+    left: -2.2vh;
+    top: 74%;
+    transform: translate(0,-50%);
+}
+.check4{
+    right: -2vh;
+    top: 74%;
+    transform: translate(0,-50%);
+}
+.round{
+    color: white;
+    position: absolute;
+    left: 80%;
+    bottom: 15vh;
+    transform: translate( -50%);
 }

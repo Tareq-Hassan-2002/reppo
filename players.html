@@ -40,8 +40,20 @@
         </div>
     </div>
     <div class="start">
-        <button><a href="players.html">Done -></a></button>
+        <button><a href="game.html">Done -></a></button>
     </div>
+    <script>
+    document.querySelector("button").addEventListener("click", function () {
+        const inputs = document.querySelectorAll("input[name='myInput']");
+        const playerNames = [];
+
+        inputs.forEach((input) => {
+            playerNames.push(input.value || input.placeholder); // fallback to placeholder
+        });
+
+        localStorage.setItem("playerNames", JSON.stringify(playerNames));
+    });
+</script>
 
 </body>
 </html>

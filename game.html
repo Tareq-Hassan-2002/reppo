@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styleGame.css">
+    <title>tarneeb 41 scorer</title>
+</head>
+<body>
+    <div class="backButtom">
+        <button><a href="players.html">Go Back</a></button>
+    </div>
+    <div class="element">
+        <div class="inner">
+            <div class="chair chair1">
+                <div class="playerName">
+                    <p>Player2</p>
+                </div>
+            </div>
+            <div class="chair chair2">
+                <div class="playerName">
+                    <p>Player4</p>
+                </div>
+            </div>
+            <div class="chair chair3">
+                <div class="playerName">
+                    <p>Player3</p>
+                </div>
+            </div>
+            <div class="chair chair4">
+                <div class="playerName">
+                    <p>Player1</p>
+                </div>
+            </div>
+
+            <!-- ترتيب الإدخالات حسب طلبك: order4 → order1 → order3 → order2 -->
+            <div class="order order4">
+                <input type="text" id="myInput4" name="myInput" placeholder="13">
+            </div>
+            <div class="order order1">
+                <input type="text" id="myInput1" name="myInput" placeholder="13">
+            </div>
+            <div class="order order3">
+                <input type="text" id="myInput3" name="myInput" placeholder="13">
+            </div>
+            <div class="order order2">
+                <input type="text" id="myInput2" name="myInput" placeholder="13">
+            </div>
+
+            <!-- ترتيب checkboxes بنفس الترتيب: check4 → check1 → check3 → check2 -->
+            <div class="order check check4">
+                <input type="checkbox" name="" id="myCheck4">
+            </div>
+            <div class="order check check1">
+                <input type="checkbox" name="" id="myCheck1">
+            </div>
+            <div class="order check check3">
+                <input type="checkbox" name="" id="myCheck3">
+            </div>
+            <div class="order check check2">
+                <input type="checkbox" name="" id="myCheck2">
+            </div>
+
+            <div class="logo">
+                <p>Tarneeb</p>
+                <p>41</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="round">
+        <button id="roundBtn">End Round</button>
+    </div>
+
+    <div class="score">
+        <p class="playername">Player2</p>
+        <p class="playername">Player4</p>
+        <p class="playername">Player3</p>
+        <p class="playername">Player1</p>
+
+        <p class="player4" id="score1">0</p>
+        <p class="player1" id="score2">0</p>
+        <p class="player3" id="score3">0</p>
+        <p class="player2" id="score4">0</p>
+    </div>
+
+    <script>
+    let scores = [0, 0, 0, 0]; // ترتيب اللاعبين: [Player2, Player4, Player3, Player1]
+
+    window.addEventListener("DOMContentLoaded", () => {
+        const names = JSON.parse(localStorage.getItem("playerNames")) || ["Player2", "Player4", "Player3", "Player1"];
+        const nameElements = document.querySelectorAll(".chair .playerName p");
+        const scoreNames = document.querySelectorAll(".score .playername");
+
+        nameElements.forEach((el, i) => el.textContent = names[i] || el.textContent);
+
+        // ترتيب العرض: Player4 (1), Player1 (3), Player3 (2), Player2 (0)
+        const order = [3, 0, 2, 1];
+        scoreNames.forEach((el, i) => el.textContent = names[order[i]] || el.textContent);
+    });
+
+    document.getElementById("roundBtn").addEventListener("click", () => {
+        // الترتيب حسب: order4, order1, order3, order2
+        const inputIds = ["myInput4", "myInput1", "myInput3", "myInput2"];
+        const checkIds = ["myCheck4", "myCheck1", "myCheck3", "myCheck2"];
+
+        inputIds.forEach((id, i) => {
+            const input = document.getElementById(id);
+            const checkbox = document.getElementById(checkIds[i]);
+            const value = parseInt(input.value);
+            const achieved = checkbox?.checked || false;
+
+            if (!isNaN(value)) {
+                const scoreToAdd = value >= 7 ? value * 2 : value;
+                scores[i] += achieved ? scoreToAdd : -scoreToAdd;
+            }
+
+            input.value = "";
+            if (checkbox) checkbox.checked = false;
+        });
+
+        // تحديث عرض السكور بنفس ترتيب العرض
+        const scoreIds = ["score1", "score2", "score3", "score4"];
+        scoreIds.forEach((id, i) => {
+            const scoreElement = document.getElementById(id);
+            if (scoreElement) scoreElement.textContent = scores[i];
+        });
+
+        checkForWinner();
+    });
+
+    function checkForWinner() {
+        const names = JSON.parse(localStorage.getItem("playerNames")) || ["Player2", "Player4", "Player3", "Player1"];
+        const team13 = scores[0] + scores[2]; // Player2 + Player3
+        const team24 = scores[1] + scores[3]; // Player4 + Player1
+
+        const team13Valid = scores[0] >= 0 && scores[1] >= 0;
+        const team24Valid = scores[2] >= 0 && scores[3] >= 0;
+
+        const winnerDiv = document.getElementById("winnerBanner");
+        if (!winnerDiv) {
+            const div = document.createElement("div");
+            div.id = "winnerBanner";
+            div.style.position = "absolute";
+            div.style.top = "50%";
+            div.style.left = "50%";
+            div.style.transform = "translate(-50%, -50%)";
+            div.style.fontSize = "24px";
+            div.style.fontWeight = "bold";
+            div.style.color = "green";
+            div.style.backgroundColor = "white";
+            div.style.padding = "20px";
+            div.style.borderRadius = "10px";
+            div.style.zIndex = "100";
+            div.style.textAlign = "center";
+            div.textContent = "";
+            document.body.appendChild(div);
+        }
+
+        if (team13 >= 41 && team13Valid) {
+            document.getElementById("winnerBanner").textContent = `مبروك الفوز ${names[3]} و ${names[2]}`;
+            document.getElementById("winnerBanner").style.display = "block";
+        } else if (team24 >= 41 && team24Valid) {
+            document.getElementById("winnerBanner").textContent = `مبروك الفوز ${names[0]} و ${names[1]}`;
+            document.getElementById("winnerBanner").style.display = "block";
+        }
+    }
+    </script>
+</body>
+</html>
